@@ -3,6 +3,7 @@ FROM node:20.11-alpine3.18 as build
 WORKDIR /usr/src/ozone
 
 COPY package.json yarn.lock .
+RUN yarn config set network-timeout 600000 -g
 RUN yarn
 COPY . .
 RUN yarn build
