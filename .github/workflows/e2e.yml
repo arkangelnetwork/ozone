@@ -4,7 +4,6 @@ on:
   pull_request:
   push:
     branches:
-      - main
       - experimental
 env:
   NEXT_PUBLIC_OZONE_SERVICE_DID: did:plc:ar7c4by46qjdydhdevvrndac
