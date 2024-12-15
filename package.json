@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@atproto/api": "^0.13.19",
-    "@atproto/oauth-client-browser": "^0.2.0",
+    "@atproto/oauth-client-browser": "^0.3.4",
     "@atproto/oauth-types": "^0.1.4",
     "@atproto/xrpc": "^0.6.1",
     "@headlessui/react": "^1.7.7",
