@@ -11,3 +11,5 @@ updates:
       - "/service/"
     schedule:
       interval: "daily"
+    allow:
+      - dependency-name: "@atproto*"
