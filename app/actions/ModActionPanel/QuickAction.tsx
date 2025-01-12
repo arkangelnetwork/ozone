@@ -32,7 +32,7 @@ import {
   ChevronUpIcon,
 } from '@heroicons/react/24/outline'
 import { LabelSelector } from '@/common/labels/Selector'
-import { pluralize, takesKeyboardEvt } from '@/lib/util'
+import { takesKeyboardEvt } from '@/lib/util'
 import { Loading } from '@/common/Loader'
 import { ActionDurationSelector } from '@/reports/ModerationForm/ActionDurationSelector'
 import { MOD_EVENTS } from '@/mod-event/constants'
@@ -59,6 +59,7 @@ import {
 import { SubjectTag } from 'components/tags/SubjectTag'
 import { HighProfileWarning } from '@/repositories/HighProfileWarning'
 import { EmailComposer } from 'components/email/Composer'
+import { ActionPolicySelector } from '@/reports/ModerationForm/ActionPolicySelector'
 
 const FORM_ID = 'mod-action-panel'
 const useBreakpoint = createBreakpoint({ xs: 340, sm: 640 })
@@ -200,6 +201,7 @@ function Form(
   const shouldShowDurationInHoursField =
     isTakedownEvent || isMuteEvent || isMuteReporterEvent
   const canManageChat = usePermission('canManageChat')
+  const canTakedown = usePermission('canTakedown')
 
   // navigate to next or prev report
   const navigateQueue = (delta: 1 | -1) => {
@@ -264,6 +266,10 @@ function Form(
 
       if (formData.get('durationInHours')) {
         coreEvent.durationInHours = Number(formData.get('durationInHours'))
+      }
+
+      if (isTakedownEvent && formData.get('policies')) {
+        coreEvent.policies = [String(formData.get('policies'))]
       }
 
       if (
@@ -331,6 +337,10 @@ function Form(
 
       if (isDivertEvent && !subjectBlobCids.length) {
         throw new Error('blob-selection-required')
+      }
+
+      if (isTakedownEvent && !coreEvent.policies) {
+        throw new Error('policy-selection-required')
       }
 
       // This block handles an edge case where a label may be applied to profile record and then the profile record is updated by the user.
@@ -491,7 +501,13 @@ function Form(
     submitForm()
   }
   useKeyPressEvent('c', safeKeyHandler(onCancel))
-  useKeyPressEvent('s', safeKeyHandler(submitForm))
+  useKeyPressEvent(
+    's',
+    safeKeyHandler((e) => {
+      e.stopImmediatePropagation()
+      submitForm()
+    }),
+  )
   useKeyPressEvent('n', safeKeyHandler(submitAndGoNext))
   useKeyPressEvent(
     'a',
@@ -513,9 +529,11 @@ function Form(
   )
   useKeyPressEvent(
     't',
-    safeKeyHandler(() => {
-      setModEventType(MOD_EVENTS.TAKEDOWN)
-    }),
+    canTakedown
+      ? safeKeyHandler(() => {
+          setModEventType(MOD_EVENTS.TAKEDOWN)
+        })
+      : undefined,
   )
 
   return (
@@ -578,6 +596,10 @@ function Form(
               <div className="max-w-xl">
                 <PreviewCard
                   subject={subject}
+                  isAuthorDeactivated={!!record?.repo.deactivatedAt}
+                  isAuthorTakendown={
+                    !!record?.repo.moderation.subjectStatus?.takendown
+                  }
                   className="border-2 border-dashed border-gray-300"
                 >
                   {!isSubjectDid && record?.repo && (
@@ -635,8 +657,8 @@ function Form(
               {!!subjectStatus?.tags?.length && (
                 <div className={`mb-3`}>
                   <FormLabel label="Tags">
-                    <LabelList className="-ml-1 flex-wrap">
-                      {subjectStatus.tags.map((tag) => {
+                    <LabelList className="-ml-1 flex-wrap gap-1">
+                      {subjectStatus.tags.sort().map((tag) => {
                         return <SubjectTag key={tag} tag={tag} />
                       })}
                     </LabelList>
@@ -666,16 +688,35 @@ function Form(
                     <ModEventDetailsPopover modEventType={modEventType} />
                   </div>
                   {shouldShowDurationInHoursField && (
-                    <FormLabel
-                      label=""
-                      htmlFor="durationInHours"
-                      className={`mb-3 mt-2`}
-                    >
-                      <ActionDurationSelector
-                        action={modEventType}
-                        labelText={isMuteEvent ? 'Mute duration' : ''}
-                      />
-                    </FormLabel>
+                    <div className="flex flex-row gap-2">
+                      <FormLabel
+                        label=""
+                        htmlFor="durationInHours"
+                        className={`mb-3 mt-2`}
+                      >
+                        <ActionDurationSelector
+                          action={modEventType}
+                          onChange={(e) => {
+                            if (e.target.value === '0') {
+                              // When permanent takedown is selected, auto check ack all checkbox
+                              const ackAllCheckbox =
+                                document.querySelector<HTMLInputElement>(
+                                  'input[name="acknowledgeAccountSubjects"]',
+                                )
+                              if (ackAllCheckbox && !ackAllCheckbox.checked) {
+                                ackAllCheckbox.checked = true
+                              }
+                            }
+                          }}
+                          labelText={isMuteEvent ? 'Mute duration' : ''}
+                        />
+                      </FormLabel>
+                      {isTakedownEvent && (
+                        <div className="mt-2 w-full">
+                          <ActionPolicySelector name="policies" />
+                        </div>
+                      )}
+                    </div>
                   )}
 
                   {isMuteReporterEvent && (
