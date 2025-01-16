@@ -87,10 +87,10 @@
     multiformats "^9.9.0"
     zod "^3.23.8"
 
-"@atproto/ozone@0.1.67":
-  version "0.1.67"
-  resolved "https://registry.yarnpkg.com/@atproto/ozone/-/ozone-0.1.67.tgz#14cf5ffb6f8617decc70dbb0d404b9da2addaeca"
-  integrity sha512-EswGcnJxxUse4cMMp/8zpkZedYSceByGuXX7StfOcFLizuxIebEyktRb6Lf+Pxu++4uQ0oDz3wb/QpGsRrAkAA==
+"@atproto/ozone@0.1.68":
+  version "0.1.68"
+  resolved "https://registry.yarnpkg.com/@atproto/ozone/-/ozone-0.1.68.tgz#2aeb5ffd4c8247f90503b77e2dbce10fe273e63e"
+  integrity sha512-+O9bc4G5LcuoBIq/2p/RcX39mYkmOSYhqnEegzW3IAecgDUK9WrYNm4PB/SUKlbHLB0hVHAjds24ygxk6jaipw==
   dependencies:
     "@atproto/api" "^0.13.27"
     "@atproto/common" "^0.4.6"
@@ -99,7 +99,7 @@
     "@atproto/lexicon" "^0.4.5"
     "@atproto/syntax" "^0.3.1"
     "@atproto/xrpc" "^0.6.6"
-    "@atproto/xrpc-server" "^0.7.6"
+    "@atproto/xrpc-server" "^0.7.7"
     "@did-plc/lib" "^0.0.1"
     compression "^1.7.4"
     cors "^2.8.5"
@@ -121,10 +121,10 @@
   resolved "https://registry.yarnpkg.com/@atproto/syntax/-/syntax-0.3.1.tgz#4346418728f9643d783d2ffcf7c77e132e1f53d4"
   integrity sha512-fzW0Mg1QUOVCWUD3RgEsDt6d1OZ6DdFmbKcDdbzUfh0t4rhtRAC05KbZYmxuMPWDAiJ4BbbQ5dkAc/mNypMXkw==
 
-"@atproto/xrpc-server@^0.7.6":
-  version "0.7.6"
-  resolved "https://registry.yarnpkg.com/@atproto/xrpc-server/-/xrpc-server-0.7.6.tgz#be4ebf2cdc3c14ddd62a3e3b38c91c57d2c74ed4"
-  integrity sha512-PU/D6I+ZyfYKMVR6yvoPSsZDDxA6iBbUaIP/SYqAfK2ufmiKgG0sCEE09AiUA4RldDFJZF0GOF0B3o6lUm8yfg==
+"@atproto/xrpc-server@^0.7.7":
+  version "0.7.7"
+  resolved "https://registry.yarnpkg.com/@atproto/xrpc-server/-/xrpc-server-0.7.7.tgz#0904df2a1da639fdacd7f25593c4b0bc483f32a2"
+  integrity sha512-hfA0OoGhWYPfrk+D6fumeRz+Jfcspan9JF0F50ok9brDjLySl5c8WAwpX47VTVzrvoInSgm4DEZ/STXWNcFxJg==
   dependencies:
     "@atproto/common" "^0.4.6"
     "@atproto/crypto" "^0.4.3"
