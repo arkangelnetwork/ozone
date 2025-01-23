@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@atproto/api@^0.13.27":
-  version "0.13.27"
-  resolved "https://registry.yarnpkg.com/@atproto/api/-/api-0.13.27.tgz#54d1172fbc4415d41089d2715a657052b26b60bc"
-  integrity sha512-IaZezARJSoFBxFvutGa+2hT0NiA+db6NpKkla2bRyv/SPinYViuqD5kaaPzc732yeE1uwUKQc4wwwlctYamFBQ==
+"@atproto/api@^0.13.30":
+  version "0.13.30"
+  resolved "https://registry.yarnpkg.com/@atproto/api/-/api-0.13.30.tgz#073165003303995d0b6b7dfc24dafb8a58a1db6f"
+  integrity sha512-U+3XUACcCuoEvszh48vnzZITr1D7xZ8yz3EqjadYtV+zb3KjBmGroa50eaSRqHyeaDUZF38knumHPyUe9tTuqg==
   dependencies:
     "@atproto/common-web" "^0.3.2"
     "@atproto/lexicon" "^0.4.5"
@@ -87,19 +87,19 @@
     multiformats "^9.9.0"
     zod "^3.23.8"
 
-"@atproto/ozone@0.1.67":
-  version "0.1.67"
-  resolved "https://registry.yarnpkg.com/@atproto/ozone/-/ozone-0.1.67.tgz#14cf5ffb6f8617decc70dbb0d404b9da2addaeca"
-  integrity sha512-EswGcnJxxUse4cMMp/8zpkZedYSceByGuXX7StfOcFLizuxIebEyktRb6Lf+Pxu++4uQ0oDz3wb/QpGsRrAkAA==
+"@atproto/ozone@0.1.72":
+  version "0.1.72"
+  resolved "https://registry.yarnpkg.com/@atproto/ozone/-/ozone-0.1.72.tgz#a7ed3ad7d3badf5aeeb4d6e88bc21c3220c92066"
+  integrity sha512-NJhVM21f+bIJNGOCQaQzE2xKbrnJfvCKk0gJT4Y0QILXHU5Mw9H38np0Q+YOQjQF5i0NCTEwhAMoH3o8j4TPNg==
   dependencies:
-    "@atproto/api" "^0.13.27"
+    "@atproto/api" "^0.13.30"
     "@atproto/common" "^0.4.6"
     "@atproto/crypto" "^0.4.3"
     "@atproto/identity" "^0.4.5"
     "@atproto/lexicon" "^0.4.5"
     "@atproto/syntax" "^0.3.1"
     "@atproto/xrpc" "^0.6.6"
-    "@atproto/xrpc-server" "^0.7.6"
+    "@atproto/xrpc-server" "^0.7.8"
     "@did-plc/lib" "^0.0.1"
     compression "^1.7.4"
     cors "^2.8.5"
@@ -121,10 +121,10 @@
   resolved "https://registry.yarnpkg.com/@atproto/syntax/-/syntax-0.3.1.tgz#4346418728f9643d783d2ffcf7c77e132e1f53d4"
   integrity sha512-fzW0Mg1QUOVCWUD3RgEsDt6d1OZ6DdFmbKcDdbzUfh0t4rhtRAC05KbZYmxuMPWDAiJ4BbbQ5dkAc/mNypMXkw==
 
-"@atproto/xrpc-server@^0.7.6":
-  version "0.7.6"
-  resolved "https://registry.yarnpkg.com/@atproto/xrpc-server/-/xrpc-server-0.7.6.tgz#be4ebf2cdc3c14ddd62a3e3b38c91c57d2c74ed4"
-  integrity sha512-PU/D6I+ZyfYKMVR6yvoPSsZDDxA6iBbUaIP/SYqAfK2ufmiKgG0sCEE09AiUA4RldDFJZF0GOF0B3o6lUm8yfg==
+"@atproto/xrpc-server@^0.7.8":
+  version "0.7.8"
+  resolved "https://registry.yarnpkg.com/@atproto/xrpc-server/-/xrpc-server-0.7.8.tgz#e793f7e2d82052e2771fa01306c0af7075d68c64"
+  integrity sha512-0QlNPYcxI37AJLL9OffQrkFI5F5SkVKf3VvNkQFVNaOe1eqdu4lty8VVVrweA57EnnOO8W4xVlc9xgVa33Gbyg==
   dependencies:
     "@atproto/common" "^0.4.6"
     "@atproto/crypto" "^0.4.3"
