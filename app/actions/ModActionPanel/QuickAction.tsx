@@ -202,6 +202,7 @@ function Form(
     isTakedownEvent || isMuteEvent || isMuteReporterEvent
   const canManageChat = usePermission('canManageChat')
   const canTakedown = usePermission('canTakedown')
+  const canSendEmail = usePermission('canSendEmail')
 
   // navigate to next or prev report
   const navigateQueue = (delta: 1 | -1) => {
@@ -458,7 +459,7 @@ function Form(
         coreEvent.$type === MOD_EVENTS.REVERSE_TAKEDOWN ||
         coreEvent.$type === MOD_EVENTS.LABEL
       setModEventType(
-        eventMayNeedEmail && !shouldMoveToNextSubject
+        eventMayNeedEmail && !shouldMoveToNextSubject && canSendEmail
           ? MOD_EVENTS.EMAIL
           : MOD_EVENTS.ACKNOWLEDGE,
       )
@@ -669,7 +670,15 @@ function Form(
               {/* This is only meant to be switched on in mobile/small screen view */}
               {/* The parent component ensures to toggle this based on the screen size */}
               {replaceFormWithEvents ? (
-                <ModEventList subject={subject} />
+                <>
+                  <ModEventList
+                    subject={subject}
+                    stats={{
+                      accountStats: subjectStatus?.accountStats,
+                      recordsStats: subjectStatus?.recordsStats,
+                    }}
+                  />
+                </>
               ) : (
                 <div className="px-1">
                   {profile && (
@@ -885,7 +894,13 @@ function Form(
         </div>
         {!replaceFormWithEvents && (
           <div className="hidden sm:block sm:w-1/2 sm:pl-4">
-            <ModEventList subject={subject} />
+            <ModEventList
+              stats={{
+                accountStats: subjectStatus?.accountStats,
+                recordsStats: subjectStatus?.recordsStats,
+              }}
+              subject={subject}
+            />
           </div>
         )}
       </div>

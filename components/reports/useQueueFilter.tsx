@@ -123,14 +123,28 @@ export const useQueueFilter = () => {
     updateFilters({ tags: [] })
   }
 
+  const setMinAccountSuspendCount = (minAccountSuspendCount?: number) => {
+    updateFilters({ minAccountSuspendCount })
+  }
+
+  const setMinReportedRecordsCount = (minReportedRecordsCount?: number) => {
+    updateFilters({ minReportedRecordsCount })
+  }
+
+  const setMinTakendownRecordsCount = (minTakendownRecordsCount?: number) => {
+    updateFilters({ minTakendownRecordsCount })
+  }
+
   return {
     queueFilters,
-    updateFilters,
     updateTagExclusions,
     addTags,
     toggleCollection,
     toggleSubjectType,
     clearSubjectType,
     clearTags,
+    setMinAccountSuspendCount,
+    setMinReportedRecordsCount,
+    setMinTakendownRecordsCount,
   }
 }
